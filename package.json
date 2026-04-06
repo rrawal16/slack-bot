@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@slack/bolt": "^4.6.0",
-    "dotenv": "^17.3.1",
-    "express": "^5.0.0"
+    "@vercel/slack-bolt": "^1.4.2",
+    "dotenv": "^17.3.1"
   }
 }
