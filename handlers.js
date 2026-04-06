@@ -6,6 +6,10 @@ const KEYWORDS = [
   "manager app",
   "business manager app",
   "manager",
+  "App",
+  "Mobile App",
+  "Business Manager App",
+  "bma",
 ];
 
 function registerMessageEvent(slackApp) {
@@ -15,7 +19,15 @@ function registerMessageEvent(slackApp) {
       if (event.channel !== SOURCE_CHANNEL_ID) return;
 
       const text = (event.text || "").toLowerCase();
-      const matched = KEYWORDS.filter((k) => text.includes(k));
+      const seen = new Set();
+      const matched = [];
+      for (const k of KEYWORDS) {
+        const keyLower = k.toLowerCase();
+        if (text.includes(keyLower) && !seen.has(keyLower)) {
+          seen.add(keyLower);
+          matched.push(k);
+        }
+      }
 
       if (matched.length === 0) return;
 
